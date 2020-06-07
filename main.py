@@ -1,12 +1,22 @@
-import requests 
+from tkinter import *
+from tkinter import ttk 
 
-URL = "http://www.omdbapi.com/?s={}&apikey=602055ed"
+import films 
 
-peli = input ("Buscar: ")
+class MainApp (Tk): 
+    def __init__ (self): 
+        Tk.__init__(self)
+        self.title ("Buca peliculas")
 
-respuesta = requests.get(URL.format(peli))
+        #Instancio 
+        searcher = films.Controller(self)
+        searcher.pack() 
 
-mijson = respuesta.json () 
+    def main(self):
+        self.mainloop() 
 
-print (mijson.get("Search")[0].get("Title"))
-print (mijson.get("Search")[0].get("Poster"))
+
+if __name__ == "__main__": 
+    app = MainApp() 
+    app.main() 
+
